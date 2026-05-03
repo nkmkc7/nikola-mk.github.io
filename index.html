@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nikola Marinkovic — Cybersécurité</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:        #0a0d13;
+      --surface:   #111520;
+      --border:    #1e2535;
+      --accent:    #00c8ff;
+      --accent2:   #0066ff;
+      --danger:    #ff3b5c;
+      --text:      #e2e8f0;
+      --muted:     #64748b;
+      --mono:      'Share Tech Mono', monospace;
+      --sans:      'DM Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── GRID BACKGROUND ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,200,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,200,255,.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 60px;
+      background: rgba(10,13,19,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 60px 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero-label {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp .6s .2s forwards;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 80px);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -1px;
+      opacity: 0;
+      animation: fadeUp .6s .35s forwards;
+    }
+
+    h1 span {
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      margin-top: 28px;
+      max-width: 580px;
+      color: var(--muted);
+      font-size: 16px;
+      font-weight: 300;
+      opacity: 0;
+      animation: fadeUp .6s .5s forwards;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 36px;
+      opacity: 0;
+      animation: fadeUp .6s .65s forwards;
+    }
+
+    .badge {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 5px 12px;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      color: var(--muted);
+      background: var(--surface);
+      letter-spacing: 1px;
+    }
+
+    .badge.hot {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      margin-top: 44px;
+      opacity: 0;
+      animation: fadeUp .6s .8s forwards;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 13px 28px;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: all .2s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+      border: 1px solid var(--accent);
+    }
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--accent);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ── SECTION COMMONS ── */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 100px 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: clamp(26px, 3vw, 40px);
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      margin-bottom: 48px;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .about-text p { color: var(--muted); margin-bottom: 16px; }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 24px;
+      transition: border-color .2s;
+    }
+    .stat-card:hover { border-color: var(--accent); }
+
+    .stat-num {
+      font-family: var(--mono);
+      font-size: 32px;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 6px;
+      letter-spacing: .5px;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .skill-cat {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 24px;
+      transition: border-color .2s, transform .2s;
+    }
+    .skill-cat:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .skill-cat h4 {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .skill-tag {
+      font-size: 11px;
+      font-family: var(--mono);
+      background: rgba(0,200,255,.07);
+      border: 1px solid rgba(0,200,255,.15);
+      color: var(--text);
+      padding: 3px 9px;
+      border-radius: 3px;
+    }
+
+    /* ── PROJECTS ── */
+    .projects-list { display: flex; flex-direction: column; gap: 28px; }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 36px;
+      transition: border-color .25s, transform .25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .3s;
+    }
+
+    .project-card:hover {
+      border-color: rgba(0,200,255,.3);
+      transform: translateY(-3px);
+    }
+    .project-card:hover::before { transform: scaleX(1); }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .project-title-block h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .project-sector {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--danger);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid rgba(0,200,255,.25);
+      padding: 6px 14px;
+      border-radius: 3px;
+      letter-spacing: 1px;
+      transition: all .2s;
+      white-space: nowrap;
+    }
+    .project-link:hover {
+      background: rgba(0,200,255,.1);
+    }
+
+    .project-desc {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 24px;
+      line-height: 1.8;
+    }
+
+    .project-highlights {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .highlight {
+      background: rgba(0,200,255,.04);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 14px 16px;
+      font-size: 13px;
+    }
+
+    .highlight strong {
+      display: block;
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .highlight span { color: var(--muted); }
+
+    /* pipeline */
+    .pipeline {
+      background: #0d1018;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      overflow-x: auto;
+    }
+
+    .pipeline-title {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .pipeline-stages {
+      display: flex;
+      gap: 0;
+      align-items: center;
+      flex-wrap: nowrap;
+    }
+
+    .stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .stage-name {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--accent);
+      white-space: nowrap;
+      background: rgba(0,200,255,.1);
+      border: 1px solid rgba(0,200,255,.25);
+      padding: 4px 10px;
+      border-radius: 3px;
+    }
+
+    .stage-tools {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--muted);
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .pipeline-arrow {
+      font-family: var(--mono);
+      color: var(--border);
+      font-size: 18px;
+      padding: 0 6px;
+      margin-bottom: 14px;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .tech {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 4px 10px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      color: var(--text);
+      transition: border-color .2s;
+    }
+    .tech:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── CONTACT ── */
+    #contact {
+      padding-bottom: 120px;
+    }
+
+    .contact-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 52px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-box::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(0,200,255,.05), transparent 70%);
+      pointer-events: none;
+    }
+
+    .contact-left h3 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .contact-left p { color: var(--muted); max-width: 420px; }
+
+    .contact-links { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 28px;
+      border-top: 1px solid var(--border);
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 1px;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .6s, transform .6s;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      section, #hero { padding: 80px 24px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .contact-box { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">NM_SEC</a>
+  <ul class="nav-links">
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#skills">Compétences</a></li>
+    <li><a href="#projects">Projets</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <p class="hero-label">// Portfolio Cybersécurité</p>
+  <h1>Nikola<br><span>Marinkovic</span></h1>
+  <p class="hero-sub">
+    Étudiant ingénieur en cybersécurité, je recherche une <strong>alternance pour un Bachelor 3ème année</strong> afin de mettre en pratique mes compétences en sécurité des systèmes, DevSecOps et supervision d'infrastructure.
+  </p>
+  <div class="hero-badges">
+    <span class="badge hot">🔍 Open to work</span>
+    <span class="badge">Bachelor Cybersécurité — 3ème année</span>
+    <span class="badge">Alternance recherchée</span>
+    <span class="badge">Île-de-France</span>
+  </div>
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary">→ Voir mes projets</a>
+    <a href="#contact" class="btn btn-ghost">Me contacter</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">// 01 — À propos</p>
+  <h2>Qui suis-je ?</h2>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>
+        Passionné par la cybersécurité, je construis des infrastructures sécurisées en intégrant la sécurité dès la conception jusqu'au déploiement. Mon approche est résolument pratique : chaque projet que je mène integre des outils réels utilisés en entreprise.
+      </p>
+      <p>
+        Ma formation m'a permis de développer des compétences solides en DevSecOps, en hardening système et en supervision — des domaines que j'approfondis continuellement à travers des projets concrets.
+      </p>
+      <p>
+        Je recherche aujourd'hui une alternance pour ma 3ème année de Bachelor en cybersécurité, où je pourrai contribuer activement à la sécurisation des systèmes d'information d'une organisation.
+      </p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Années de formation</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Projets réalisés</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">20+</div>
+        <div class="stat-label">Outils maîtrisés</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">0</div>
+        <div class="stat-label">Faille non patchée 😄</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">// 02 — Compétences</p>
+  <h2>Stack technique</h2>
+  <div class="skills-grid reveal">
+    <div class="skill-cat">
+      <h4>DevSecOps</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Docker</span>
+        <span class="skill-tag">Terraform</span>
+        <span class="skill-tag">Ansible</span>
+        <span class="skill-tag">GitLab CI/CD</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h4>Sécurité Applicative</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Gitleaks</span>
+        <span class="skill-tag">Bandit (SAST)</span>
+        <span class="skill-tag">Safety (SCA)</span>
+        <span class="skill-tag">Checkov</span>
+        <span class="skill-tag">Trivy</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h4>Infrastructure</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Nginx</span>
+        <span class="skill-tag">PostgreSQL</span>
+        <span class="skill-tag">FastAPI</span>
+        <span class="skill-tag">Micro-segmentation</span>
+        <span class="skill-tag">DMZ</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h4>Supervision</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Prometheus</span>
+        <span class="skill-tag">Grafana</span>
+        <span class="skill-tag">Dashboards RT</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h4>Hardening</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">En-têtes HTTP</span>
+        <span class="skill-tag">Bannières</span>
+        <span class="skill-tag">Restriction méthodes</span>
+        <span class="skill-tag">Isolation réseau</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h4>Développement</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Pytest</span>
+        <span class="skill-tag">Bash</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label">// 03 — Projets</p>
+  <h2>Réalisations</h2>
+
+  <div class="projects-list">
+
+    <!-- PROJECT 1 -->
+    <div class="project-card reveal">
+      <div class="project-header">
+        <div class="project-title-block">
+          <h3>Projet DevSecOps — HealthSecure Solutions</h3>
+          <p class="project-sector">⚕ Secteur santé · Infrastructure complète</p>
+        </div>
+        <a href="https://gitlab.com/nkmkc7-group/projet-supervision-devsecops" target="_blank" class="project-link">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          GitLab
+        </a>
+      </div>
+
+      <p class="project-desc">
+        Déploiement d'une infrastructure conteneurisée complète pour une entreprise fictive du secteur de la santé, avec intégration de la sécurité à chaque étape : conception, déploiement, durcissement, pipeline CI/CD et supervision en temps réel.
+      </p>
+
+      <div class="project-highlights">
+        <div class="highlight">
+          <strong>Infrastructure as Code</strong>
+          <span>7 conteneurs Docker + 4 réseaux isolés (DMZ, interne, BDD, monitoring) via Terraform</span>
+        </div>
+        <div class="highlight">
+          <strong>Hardening & sécurité</strong>
+          <span>Durcissement Nginx & PostgreSQL via Ansible : en-têtes HTTP, suppression de bannières, restriction des méthodes</span>
+        </div>
+        <div class="highlight">
+          <strong>Supervision</strong>
+          <span>Stack Prometheus + Grafana avec dashboards temps réel pour Nginx et PostgreSQL</span>
+        </div>
+        <div class="highlight">
+          <strong>Rapports</strong>
+          <span>Chaque job sécurité génère un rapport JSON exporté en artefact GitLab</span>
+        </div>
+      </div>
+
+      <!-- CI/CD Pipeline -->
+      <div class="pipeline">
+        <p class="pipeline-title">// Pipeline CI/CD — 5 stages · 7 jobs</p>
+        <div class="pipeline-stages">
+          <div class="stage">
+            <span class="stage-name">security-pre</span>
+            <span class="stage-tools">Gitleaks</span>
+          </div>
+          <span class="pipeline-arrow">›</span>
+          <div class="stage">
+            <span class="stage-name">test</span>
+            <span class="stage-tools">Pytest</span>
+          </div>
+          <span class="pipeline-arrow">›</span>
+          <div class="stage">
+            <span class="stage-name">security-static</span>
+            <span class="stage-tools">Bandit · Safety · Checkov</span>
+          </div>
+          <span class="pipeline-arrow">›</span>
+          <div class="stage">
+            <span class="stage-name">build</span>
+            <span class="stage-tools">Docker DinD</span>
+          </div>
+          <span class="pipeline-arrow">›</span>
+          <div class="stage">
+            <span class="stage-name">security-post</span>
+            <span class="stage-tools">Trivy</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tech-stack">
+        <span class="tech">Docker</span>
+        <span class="tech">Terraform</span>
+        <span class="tech">Ansible</span>
+        <span class="tech">GitLab CI/CD</span>
+        <span class="tech">FastAPI</span>
+        <span class="tech">Nginx</span>
+        <span class="tech">PostgreSQL</span>
+        <span class="tech">Gitleaks</span>
+        <span class="tech">Bandit</span>
+        <span class="tech">Safety</span>
+        <span class="tech">Checkov</span>
+        <span class="tech">Trivy</span>
+        <span class="tech">Prometheus</span>
+        <span class="tech">Grafana</span>
+        <span class="tech">Python</span>
+        <span class="tech">Pytest</span>
+      </div>
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="project-card reveal">
+      <div class="project-header">
+        <div class="project-title-block">
+          <h3>OCS Inventory NG & GLPI — Gestion de parc & Helpdesk</h3>
+          <p class="project-sector">🖥 Infrastructure IT · Active Directory · Service Desk</p>
+        </div>
+      </div>
+
+      <p class="project-desc">
+        Conception et déploiement d'une infrastructure complète de gestion de parc informatique et de helpdesk, de l'installation des serveurs jusqu'à l'intégration avec l'Active Directory. Projet structuré en quatre étapes progressives couvrant inventaire, ticketing, authentification centralisée et supervision automatisée.
+      </p>
+
+      <div class="project-highlights">
+        <div class="highlight">
+          <strong>OCS Inventory NG</strong>
+          <span>Stack LAMP (Apache2, MariaDB, PHP), modules Perl/PHP, agents déployés sur Windows, Linux et Android</span>
+        </div>
+        <div class="highlight">
+          <strong>GLPI 10</strong>
+          <span>Installation complète, extensions PHP, sécurisation SSL avec certificat auto-signé, accès par nom de domaine</span>
+        </div>
+        <div class="highlight">
+          <strong>Active Directory</strong>
+          <span>Liaison LDAP avec contrôleur de domaine Windows Server, importation des utilisateurs, authentification centralisée</span>
+        </div>
+        <div class="highlight">
+          <strong>Tickets & Notifications</strong>
+          <span>Config SMTP, collecteurs IMAP (Zimbra), alertes automatiques, plugin FusionInventory + planification cron</span>
+        </div>
+      </div>
+
+      <!-- Étapes pipeline -->
+      <div class="pipeline">
+        <p class="pipeline-title">// Déploiement — 4 étapes progressives</p>
+        <div class="pipeline-stages">
+          <div class="stage">
+            <span class="stage-name">Étape 1</span>
+            <span class="stage-tools">OCS Inventory NG</span>
+          </div>
+          <span class="pipeline-arrow">›</span>
+          <div class="stage">
+            <span class="stage-name">Étape 2</span>
+            <span class="stage-tools">GLPI 10 + SSL</span>
+          </div>
+          <span class="pipeline-arrow">›</span>
+          <div class="stage">
+            <span class="stage-name">Étape 3</span>
+            <span class="stage-tools">LDAP / AD</span>
+          </div>
+          <span class="pipeline-arrow">›</span>
+          <div class="stage">
+            <span class="stage-name">Étape 4</span>
+            <span class="stage-tools">Tickets + FusionInventory</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tech-stack">
+        <span class="tech">Linux Debian</span>
+        <span class="tech">Apache2</span>
+        <span class="tech">MariaDB</span>
+        <span class="tech">PHP</span>
+        <span class="tech">OCS Inventory NG</span>
+        <span class="tech">GLPI</span>
+        <span class="tech">FusionInventory</span>
+        <span class="tech">LDAP</span>
+        <span class="tech">Active Directory</span>
+        <span class="tech">SSL/TLS</span>
+        <span class="tech">SMTP/IMAP</span>
+        <span class="tech">DNS</span>
+        <span class="tech">VMware</span>
+        <span class="tech">Zimbra</span>
+      </div>
+    </div>
+
+    <!-- PROJECT 3 -->
+    <div class="project-card reveal">
+      <div class="project-header">
+        <div class="project-title-block">
+          <h3>pfSense — Firewall & Authentification Centralisée AD</h3>
+          <p class="project-sector">🔥 Firewall · PKI · LDAPS · Active Directory</p>
+        </div>
+      </div>
+
+      <p class="project-desc">
+        Configuration et intégration d'un firewall pfSense avec authentification centralisée via Active Directory, en mettant en place une connexion LDAP sécurisée (LDAPS). Le projet couvre le diagnostic réseau, la mise en place d'une infrastructure PKI, la sécurisation TLS et l'intégration complète des utilisateurs AD dans l'interface d'administration pfSense.
+      </p>
+
+      <div class="project-highlights">
+        <div class="highlight">
+          <strong>Diagnostic LDAP/LDAPS</strong>
+          <span>Vérification connectivité ports 389 et 636 via ldp.exe, analyse de trafic Wireshark pour identifier les problèmes de certificat</span>
+        </div>
+        <div class="highlight">
+          <strong>PKI — AD CS</strong>
+          <span>Installation du rôle AD CS sur Windows Server, création d'une AC racine d'entreprise (HERMES-CA), chiffrement RSA 4096 bits / SHA256</span>
+        </div>
+        <div class="highlight">
+          <strong>Sécurisation LDAPS</strong>
+          <span>Export certificat X.509 DER, import dans le Certificate Manager pfSense, établissement du handshake TLS</span>
+        </div>
+        <div class="highlight">
+          <strong>Intégration AD / pfSense</strong>
+          <span>Authentifications LDAP et LDAPS sur pfSense, gestion des groupes et privilèges, connexion des utilisateurs AD à l'interface admin</span>
+        </div>
+      </div>
+
+      <!-- Pipeline -->
+      <div class="pipeline">
+        <p class="pipeline-title">// Déploiement — 4 étapes progressives</p>
+        <div class="pipeline-stages">
+          <div class="stage">
+            <span class="stage-name">Étape 1</span>
+            <span class="stage-tools">Diag LDAP/LDAPS</span>
+          </div>
+          <span class="pipeline-arrow">›</span>
+          <div class="stage">
+            <span class="stage-name">Étape 2</span>
+            <span class="stage-tools">PKI / AD CS</span>
+          </div>
+          <span class="pipeline-arrow">›</span>
+          <div class="stage">
+            <span class="stage-name">Étape 3</span>
+            <span class="stage-tools">LDAPS + TLS</span>
+          </div>
+          <span class="pipeline-arrow">›</span>
+          <div class="stage">
+            <span class="stage-name">Étape 4</span>
+            <span class="stage-tools">AD ↔ pfSense</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tech-stack">
+        <span class="tech">pfSense</span>
+        <span class="tech">Active Directory</span>
+        <span class="tech">LDAP / LDAPS</span>
+        <span class="tech">PKI / AD CS</span>
+        <span class="tech">SSL/TLS</span>
+        <span class="tech">Wireshark</span>
+        <span class="tech">Windows Server</span>
+        <span class="tech">Certificate Manager</span>
+        <span class="tech">RSA 4096</span>
+        <span class="tech">SHA256</span>
+        <span class="tech">VMware</span>
+      </div>
+    </div>
+
+    <!-- PLACEHOLDER -->
+    <div class="project-card reveal" style="border-style: dashed; opacity: .5; pointer-events: none;">
+      <div class="project-header">
+        <div class="project-title-block">
+          <h3 style="color: var(--muted);">Projet à venir…</h3>
+          <p class="project-sector" style="color: var(--border);">En cours d'ajout</p>
+        </div>
+      </div>
+      <p class="project-desc">Les prochains projets seront ajoutés ici.</p>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">// 04 — Contact</p>
+  <div class="contact-box reveal">
+    <div class="contact-left">
+      <h3>Travaillons ensemble</h3>
+      <p>Je recherche une alternance pour mon Bachelor Cybersécurité 3ème année. N'hésitez pas à me contacter pour discuter d'opportunités.</p>
+    </div>
+    <div class="contact-links">
+      <a href="https://gitlab.com/nkmkc7-group" target="_blank" class="btn btn-primary">GitLab</a>
+      <a href="https://www.linkedin.com/in/nikola-marinkovic-3b5412235" target="_blank" class="btn btn-ghost">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  © 2025 Nikola Marinkovic — Tous droits réservés &nbsp;·&nbsp; Cybersécurité
+</footer>
+
+<script>
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => io.observe(r));
+</script>
+
+</body>
+</html>
