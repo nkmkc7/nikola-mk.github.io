@@ -650,7 +650,7 @@
         <div class="stat-label">Années de formation</div>
       </div>
       <div class="stat-card">
-        <div class="stat-num">3+</div>
+        <div class="stat-num">6+</div>
         <div class="stat-label">Projets réalisés</div>
       </div>
       <div class="stat-card">
@@ -699,6 +699,19 @@
         <span class="skill-tag">FastAPI</span>
         <span class="skill-tag">Micro-segmentation</span>
         <span class="skill-tag">DMZ</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h4>Réseau & Sécurité L2</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Cisco IOS</span>
+        <span class="skill-tag">GNS3</span>
+        <span class="skill-tag">VLANs</span>
+        <span class="skill-tag">HSRP / LACP</span>
+        <span class="skill-tag">DHCP Snooping</span>
+        <span class="skill-tag">DAI</span>
+        <span class="skill-tag">STP</span>
+        <span class="skill-tag">ACL</span>
       </div>
     </div>
     <div class="skill-cat">
@@ -834,7 +847,7 @@
         </div>
         <a href="ocs_glpi.pdf" target="_blank" class="pdf-badge">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          📄 Documentation PDF
+           Documentation PDF
         </a>
       </div>
 
@@ -909,12 +922,12 @@
     <div class="project-card reveal">
       <div class="project-header">
         <div class="project-title-block">
-          <h3>pfSense — Firewall & Authentification Centralisée AD</h3>
+          <h3>PfSense — Firewall & Authentification Centralisée AD</h3>
           <p class="project-sector"> Firewall · PKI · LDAPS · Active Directory</p>
         </div>
         <a href="pfsense.pdf" target="_blank" class="pdf-badge">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          📄 Documentation PDF
+           Documentation PDF
         </a>
       </div>
 
@@ -979,6 +992,235 @@
         <span class="tech">RSA 4096</span>
         <span class="tech">SHA256</span>
         <span class="tech">VMware</span>
+      </div>
+    </div>
+
+    <!-- PROJECT 4 -->
+    <div class="project-card reveal">
+      <div class="project-header">
+        <div class="project-title-block">
+          <h3>Windows Server — AD DS, DHCP, DNS, GPO & FTP</h3>
+          <p class="project-sector"> Infrastructure Windows · Gestion des identités · Automatisation</p>
+        </div>
+        <a href="windows_server.pdf" target="_blank" class="pdf-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+           Documentation PDF
+        </a>
+      </div>
+
+      <p class="project-desc">
+        Déploiement et configuration d'une infrastructure complète de services d'annuaire sur Windows Server 2019 pour un domaine fictif <strong>stadiumcompany.com</strong>, couvrant l'installation des rôles, la gestion des identités, l'automatisation PowerShell, les stratégies de groupe et la mise en place d'un serveur FTP.
+      </p>
+
+      <div class="project-highlights">
+        <div class="highlight">
+          <strong>Rôles serveur</strong>
+          <span>Installation AD DS, DNS et DHCP sur Windows Server 2012 R2, promotion en contrôleur de domaine avec création d'une nouvelle forêt</span>
+        </div>
+        <div class="highlight">
+          <strong>DHCP / DNS</strong>
+          <span>8 étendues DHCP par VLAN (Administration, Équipes, WiFi, Caméra-IP, VIP-Presse, Fournisseurs, Restaurant, Sécurité), zones DNS directes et inversées</span>
+        </div>
+        <div class="highlight">
+          <strong>Active Directory & GPO</strong>
+          <span>Création des UO et sous-UO par service, déploiement de 3 GPO : fond d'écran, lecteur réseau mappé (M:) et restriction panneau de configuration</span>
+        </div>
+        <div class="highlight">
+          <strong>Automatisation & FTP</strong>
+          <span>Script PowerShell d'import CSV pour création en masse des comptes AD, déploiement rôle IIS/FTP avec autorisations par groupe et auth domaine</span>
+        </div>
+      </div>
+
+      <!-- Pipeline -->
+      <div class="pipeline">
+        <p class="pipeline-title">// Déploiement — GPO : 3 stratégies de groupe</p>
+        <div class="pipeline-stages">
+          <div class="stage">
+            <span class="stage-name">Fond d'écran</span>
+            <span class="stage-tools">Partage réseau sécurisé</span>
+          </div>
+          <span class="pipeline-arrow">›</span>
+          <div class="stage">
+            <span class="stage-name">Partage Map</span>
+            <span class="stage-tools">Lecteur réseau M:</span>
+          </div>
+          <span class="pipeline-arrow">›</span>
+          <div class="stage">
+            <span class="stage-name">Panneau config</span>
+            <span class="stage-tools">Restriction utilisateurs</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tech-stack">
+        <span class="tech">Windows Server 2012 R2</span>
+        <span class="tech">Active Directory</span>
+        <span class="tech">DNS</span>
+        <span class="tech">DHCP</span>
+        <span class="tech">GPO</span>
+        <span class="tech">PowerShell</span>
+        <span class="tech">FTP / IIS</span>
+        <span class="tech">VLAN</span>
+        <span class="tech">Gestion des identités</span>
+        <span class="tech">Administration système</span>
+      </div>
+    </div>
+
+    <!-- PROJECT 5 -->
+    <div class="project-card reveal">
+      <div class="project-header">
+        <div class="project-title-block">
+          <h3>Zabbix — Supervision & Monitoring Réseau</h3>
+          <p class="project-sector"> Monitoring · SNMP · Discovery · Cartographie réseau</p>
+        </div>
+        <a href="zabbix.pdf" target="_blank" class="pdf-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+           Documentation PDF
+        </a>
+      </div>
+
+      <p class="project-desc">
+        Déploiement et configuration d'une infrastructure de monitoring complète basée sur <strong>Zabbix 6.0</strong> sur deux machines Linux, couvrant l'installation du serveur, la gestion des agents, l'automatisation de la découverte réseau et la mise en place de scénarios de surveillance web multi-étapes.
+      </p>
+
+      <div class="project-highlights">
+        <div class="highlight">
+          <strong>Déploiement serveur</strong>
+          <span>Installation Zabbix Server sur Debian 11 avec MySQL et Apache, configuration complète via CLI et interface web</span>
+        </div>
+        <div class="highlight">
+          <strong>Supervision des hôtes</strong>
+          <span>Agents Zabbix sur machines clientes, templates Linux (CPU, mémoire, stockage, filesystem), intégration SNMP pour équipements réseau</span>
+        </div>
+        <div class="highlight">
+          <strong>Scénarios Web HTTP</strong>
+          <span>5 étapes de supervision : First Page → Log In → Login Check → Log Out → Log Out Check, vérification codes HTTP 200 et chaînes de réponse</span>
+        </div>
+        <div class="highlight">
+          <strong>Cartographie réseau</strong>
+          <span>Map graphique du réseau 10.0.2.0/24 avec triggers visuels sur les liens (High CPU, High Memory, High Swap) pour identification rapide des incidents</span>
+        </div>
+      </div>
+
+      <!-- Pipeline discovery -->
+      <div class="pipeline">
+        <p class="pipeline-title">// Discovery automatique — plage IP avec checks</p>
+        <div class="pipeline-stages">
+          <div class="stage">
+            <span class="stage-name">Ping ICMP</span>
+            <span class="stage-tools">Détection hôtes actifs</span>
+          </div>
+          <span class="pipeline-arrow">›</span>
+          <div class="stage">
+            <span class="stage-name">system.uname</span>
+            <span class="stage-tools">Identification OS</span>
+          </div>
+          <span class="pipeline-arrow">›</span>
+          <div class="stage">
+            <span class="stage-name">Discovery Action</span>
+            <span class="stage-tools">Groupe Linux Servers</span>
+          </div>
+          <span class="pipeline-arrow">›</span>
+          <div class="stage">
+            <span class="stage-name">Link Template</span>
+            <span class="stage-tools">Linux by Zabbix agent</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tech-stack">
+        <span class="tech">Zabbix 6.0</span>
+        <span class="tech">Linux Debian</span>
+        <span class="tech">MySQL</span>
+        <span class="tech">Apache</span>
+        <span class="tech">SNMP</span>
+        <span class="tech">Agents Zabbix</span>
+        <span class="tech">Templates</span>
+        <span class="tech">Triggers</span>
+        <span class="tech">Discovery Rules</span>
+        <span class="tech">Scénarios Web HTTP</span>
+        <span class="tech">Cartographie réseau</span>
+        <span class="tech">Administration système</span>
+      </div>
+    </div>
+
+    <!-- PROJECT 6 — GNS3 -->
+    <div class="project-card reveal">
+      <div class="project-header">
+        <div class="project-title-block">
+          <h3>Sécurisation d'une infrastructure réseau — GNS3</h3>
+          <p class="project-sector"> Réseau · Attaques L2 · Haute disponibilité · Cisco IOS</p>
+        </div>
+        <a href="https://github.com/nkmkc7/Projet-GNS3" target="_blank" class="project-link">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          GitHub
+        </a>
+      </div>
+
+      <p class="project-desc">
+        Conception et déploiement sur <strong>GNS3</strong> d'une infrastructure réseau d'entreprise complète, partant d'une architecture segmentée pour aboutir à une topologie 3-tier entièrement redondée. Le projet couvre la mise en place, la simulation d'attaques réelles et le durcissement L2 jusqu'à la haute disponibilité.
+      </p>
+
+      <div class="project-highlights">
+        <div class="highlight">
+          <strong>TP1 — Infrastructure</strong>
+          <span>VLANs, routage inter-VLAN (router-on-a-stick), NAT, DHCP via dnsmasq — mise en place de la base segmentée</span>
+        </div>
+        <div class="highlight">
+          <strong>TP2 — Simulation d'attaques</strong>
+          <span>DHCP spoofing & starvation, ARP poisoning, DNS spoofing — reproduction des vecteurs d'attaque L2 courants</span>
+        </div>
+        <div class="highlight">
+          <strong>TP3 — Durcissement L2</strong>
+          <span>DHCP snooping, DAI (Dynamic ARP Inspection), IP Source Guard, protections STP contre les attaques de spanning-tree</span>
+        </div>
+        <div class="highlight">
+          <strong>TP4 — Haute disponibilité</strong>
+          <span>HSRP (redondance passerelle), LACP (agrégation de liens), ACL, topologie 3-tier entièrement redondée</span>
+        </div>
+      </div>
+
+      <!-- Pipeline -->
+      <div class="pipeline">
+        <p class="pipeline-title">// 4 TP progressifs — de l'infra à la redondance totale</p>
+        <div class="pipeline-stages">
+          <div class="stage">
+            <span class="stage-name">TP1</span>
+            <span class="stage-tools">VLANs / NAT / DHCP</span>
+          </div>
+          <span class="pipeline-arrow">›</span>
+          <div class="stage">
+            <span class="stage-name">TP2</span>
+            <span class="stage-tools">Attaques L2</span>
+          </div>
+          <span class="pipeline-arrow">›</span>
+          <div class="stage">
+            <span class="stage-name">TP3</span>
+            <span class="stage-tools">Hardening L2</span>
+          </div>
+          <span class="pipeline-arrow">›</span>
+          <div class="stage">
+            <span class="stage-name">TP4</span>
+            <span class="stage-tools">HSRP / LACP / 3-tier</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tech-stack">
+        <span class="tech">Cisco IOS</span>
+        <span class="tech">GNS3</span>
+        <span class="tech">VLANs</span>
+        <span class="tech">Router-on-a-stick</span>
+        <span class="tech">NAT / DHCP</span>
+        <span class="tech">HSRP</span>
+        <span class="tech">LACP</span>
+        <span class="tech">STP</span>
+        <span class="tech">DHCP Snooping</span>
+        <span class="tech">DAI</span>
+        <span class="tech">IP Source Guard</span>
+        <span class="tech">ACL</span>
+        <span class="tech">Rocky Linux</span>
+        <span class="tech">GitHub</span>
       </div>
     </div>
 
