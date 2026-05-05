@@ -6,7 +6,30 @@
   <title>Nikola Marinkovic — Cybersécurité</title>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
+    /* ── LIGHT MODE (default) ── */
     :root {
+      --bg:        #f0f4f8;
+      --surface:   #ffffff;
+      --border:    #d0d9e8;
+      --accent:    #0088cc;
+      --accent2:   #0044cc;
+      --danger:    #e02040;
+      --text:      #1a2333;
+      --muted:     #5a6a80;
+      --mono:      'Share Tech Mono', monospace;
+      --sans:      'DM Sans', sans-serif;
+      --nav-bg:    rgba(240,244,248,.92);
+      --grid-color: rgba(0,136,204,.04);
+      --pipeline-bg: #e8edf4;
+      --skill-tag-bg: rgba(0,136,204,.08);
+      --skill-tag-border: rgba(0,136,204,.2);
+      --highlight-bg: rgba(0,136,204,.05);
+      --tech-bg: rgba(0,0,0,.04);
+      --contact-glow: rgba(0,136,204,.07);
+    }
+
+    /* ── DARK MODE ── */
+    [data-theme="dark"] {
       --bg:        #0a0d13;
       --surface:   #111520;
       --border:    #1e2535;
@@ -15,8 +38,14 @@
       --danger:    #ff3b5c;
       --text:      #e2e8f0;
       --muted:     #64748b;
-      --mono:      'Share Tech Mono', monospace;
-      --sans:      'DM Sans', sans-serif;
+      --nav-bg:    rgba(10,13,19,.88);
+      --grid-color: rgba(0,200,255,.03);
+      --pipeline-bg: #0d1018;
+      --skill-tag-bg: rgba(0,200,255,.07);
+      --skill-tag-border: rgba(0,200,255,.15);
+      --highlight-bg: rgba(0,200,255,.04);
+      --tech-bg: rgba(255,255,255,.04);
+      --contact-glow: rgba(0,200,255,.05);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,6 +59,7 @@
       font-size: 15px;
       line-height: 1.7;
       overflow-x: hidden;
+      transition: background .3s, color .3s;
     }
 
     /* ── GRID BACKGROUND ── */
@@ -38,12 +68,34 @@
       position: fixed;
       inset: 0;
       background-image:
-        linear-gradient(rgba(0,200,255,.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,200,255,.03) 1px, transparent 1px);
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
       background-size: 40px 40px;
       pointer-events: none;
       z-index: 0;
     }
+
+    /* ── THEME TOGGLE BUTTON ── */
+    #theme-toggle {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 14px;
+      cursor: pointer;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition: all .2s;
+    }
+    #theme-toggle:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    #theme-toggle .toggle-icon { font-size: 13px; }
 
     /* ── NAV ── */
     nav {
@@ -54,9 +106,10 @@
       justify-content: space-between;
       align-items: center;
       padding: 18px 60px;
-      background: rgba(10,13,19,.85);
+      background: var(--nav-bg);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
+      transition: background .3s, border-color .3s;
     }
 
     .nav-logo {
@@ -197,6 +250,27 @@
       color: var(--accent);
     }
 
+    .btn-cv {
+      background: rgba(220, 50, 50, .08);
+      color: #cc2233;
+      border: 1px solid rgba(200, 40, 40, .3);
+    }
+    [data-theme="dark"] .btn-cv {
+      background: rgba(255, 60, 60, .08);
+      color: #ff6b6b;
+      border: 1px solid rgba(255, 80, 80, .3);
+    }
+    .btn-cv:hover {
+      background: rgba(200, 30, 30, .15);
+      border-color: #cc2233;
+      color: #cc2233;
+    }
+    [data-theme="dark"] .btn-cv:hover {
+      background: rgba(255, 60, 60, .18);
+      border-color: #ff6b6b;
+      color: #ff6b6b;
+    }
+
     /* ── SECTION COMMONS ── */
     section {
       position: relative;
@@ -298,8 +372,8 @@
     .skill-tag {
       font-size: 11px;
       font-family: var(--mono);
-      background: rgba(0,200,255,.07);
-      border: 1px solid rgba(0,200,255,.15);
+      background: var(--skill-tag-bg);
+      border: 1px solid var(--skill-tag-border);
       color: var(--text);
       padding: 3px 9px;
       border-radius: 3px;
@@ -392,7 +466,7 @@
     }
 
     .highlight {
-      background: rgba(0,200,255,.04);
+      background: var(--highlight-bg);
       border: 1px solid var(--border);
       border-radius: 5px;
       padding: 14px 16px;
@@ -413,7 +487,7 @@
 
     /* pipeline */
     .pipeline {
-      background: #0d1018;
+      background: var(--pipeline-bg);
       border: 1px solid var(--border);
       border-radius: 5px;
       padding: 16px 20px;
@@ -481,7 +555,7 @@
       font-family: var(--mono);
       font-size: 11px;
       padding: 4px 10px;
-      background: rgba(255,255,255,.04);
+      background: var(--tech-bg);
       border: 1px solid var(--border);
       border-radius: 3px;
       color: var(--text);
@@ -512,7 +586,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 70% 50%, rgba(0,200,255,.05), transparent 70%);
+      background: radial-gradient(ellipse at 70% 50%, var(--contact-glow), transparent 70%);
       pointer-events: none;
     }
 
@@ -589,6 +663,7 @@
     @media (max-width: 768px) {
       nav { padding: 16px 24px; }
       .nav-links { display: none; }
+      #toggle-label { display: none; }
       section, #hero { padding: 80px 24px; }
       .about-grid { grid-template-columns: 1fr; }
       .contact-box { padding: 32px 24px; }
@@ -606,6 +681,10 @@
     <li><a href="#projects">Projets</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button id="theme-toggle" onclick="toggleTheme()" aria-label="Changer le thème">
+    <span class="toggle-icon" id="toggle-icon">☀️</span>
+    <span id="toggle-label">Mode clair</span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -641,7 +720,7 @@
         Ma formation en autodidacte m'a permis de développer des compétences solides en cybersécurité, DevSecOps, hardening système et supervision, des domaines que j'approfondis continuellement à travers des projets concrets
       </p>
       <p>
-        Je recherche aujourd'hui une alternance pour ma 3ème année de Bachelor en cybersécurité, où je pourrai contribuer activement à la sécurisation des systèmes d'information d'une organisation.
+        Je suis à la recherche d'une alternance dans le cadre de mon Bachelor en 3ème année : Cybersécurité et réseaux : Administrateur systèmes et réseaux, Analyste SOC, vulnerability management, développement sécurité, SSI. 
       </p>
     </div>
     <div class="about-stats">
@@ -1251,6 +1330,10 @@
     <div class="contact-links">
       <a href="https://gitlab.com/nkmkc7-group" target="_blank" class="btn btn-primary">GitLab</a>
       <a href="https://www.linkedin.com/in/nikola-marinkovic-3b5412235" target="_blank" class="btn btn-ghost">LinkedIn</a>
+      <a href="CV_Nikola_Marinkovic.pdf" target="_blank" class="btn btn-cv">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Mon CV
+      </a>
     </div>
   </div>
 </section>
@@ -1261,7 +1344,28 @@
 </footer>
 
 <script>
-  // Reveal on scroll
+  // ── THEME TOGGLE ──
+  const html = document.documentElement;
+  const icon = document.getElementById('toggle-icon');
+  const label = document.getElementById('toggle-label');
+
+  // Default: light mode (no data-theme attribute)
+  let isDark = false;
+
+  function toggleTheme() {
+    isDark = !isDark;
+    if (isDark) {
+      html.setAttribute('data-theme', 'dark');
+      icon.textContent = '🌙';
+      label.textContent = 'Mode sombre';
+    } else {
+      html.removeAttribute('data-theme');
+      icon.textContent = '☀️';
+      label.textContent = 'Mode clair';
+    }
+  }
+
+  // ── REVEAL ON SCROLL ──
   const reveals = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
