@@ -622,6 +622,110 @@
       border-color: #ff6b6b;
     }
 
+    /* ── EMAIL CARD ── */
+    .email-card {
+      display: block;
+      margin-top: 20px;
+      text-decoration: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px 32px;
+      transition: border-color .25s, transform .2s, box-shadow .25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .email-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .3s;
+    }
+
+    .email-card:hover {
+      border-color: rgba(0,136,204,.4);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0,136,204,.08);
+    }
+
+    [data-theme="dark"] .email-card:hover {
+      border-color: rgba(0,200,255,.3);
+      box-shadow: 0 8px 28px rgba(0,200,255,.07);
+    }
+
+    .email-card:hover::before { transform: scaleX(1); }
+
+    .email-card-inner {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .email-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      background: rgba(0,136,204,.1);
+      border: 1px solid rgba(0,136,204,.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      flex-shrink: 0;
+      transition: background .2s;
+    }
+
+    [data-theme="dark"] .email-icon {
+      background: rgba(0,200,255,.08);
+      border-color: rgba(0,200,255,.2);
+    }
+
+    .email-card:hover .email-icon {
+      background: rgba(0,136,204,.18);
+    }
+
+    [data-theme="dark"] .email-card:hover .email-icon {
+      background: rgba(0,200,255,.15);
+    }
+
+    .email-content {
+      flex: 1;
+    }
+
+    .email-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .email-address {
+      font-family: var(--mono);
+      font-size: 16px;
+      color: var(--text);
+      letter-spacing: .5px;
+      font-weight: 500;
+    }
+
+    .email-arrow {
+      font-family: var(--mono);
+      font-size: 20px;
+      color: var(--muted);
+      transition: color .2s, transform .2s;
+    }
+
+    .email-card:hover .email-arrow {
+      color: var(--accent);
+      transform: translateX(4px);
+    }
+
     /* ── FOOTER ── */
     footer {
       position: relative;
@@ -720,7 +824,7 @@
         Ma formation en autodidacte m'a permis de développer des compétences solides en cybersécurité, DevSecOps, hardening système et supervision, des domaines que j'approfondis continuellement à travers des projets concrets
       </p>
       <p>
-        Je suis à la recherche d'une alternance dans le cadre de mon Bachelor en 3ème année : Cybersécurité et réseaux : Administrateur systèmes et réseaux, Analyste SOC, vulnerability management, développement sécurité, SSI. 
+        Je suis à la recherche d'une alternance dans le cadre de mon Bachelor en 3ème année : Cybersécurité et réseaux : Administrateur systèmes et réseaux, Analyste SOC, vulnerability management, développement sécurité, SSI.
       </p>
     </div>
     <div class="about-stats">
@@ -1336,6 +1440,23 @@
       </a>
     </div>
   </div>
+
+  <!-- EMAIL CARD -->
+  <a href="mailto:ton.email@exemple.com" class="email-card reveal">
+    <div class="email-card-inner">
+      <div class="email-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <polyline points="2,4 12,13 22,4"/>
+        </svg>
+      </div>
+      <div class="email-content">
+        <p class="email-label">// M'envoyer un e-mail</p>
+        <p class="email-address">nikola.marinkovic7@hotmail.com</p>
+      </div>
+      <div class="email-arrow">&#8594;</div>
+    </div>
+  </a>
 </section>
 
 <!-- FOOTER -->
